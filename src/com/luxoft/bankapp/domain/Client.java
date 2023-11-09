@@ -1,14 +1,12 @@
 package com.luxoft.bankapp.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Client {
 	
 	private String name;
 	private Gender gender;
-	private List<Account> accounts = new ArrayList<Account>();
+	private Set<Account> accounts = new LinkedHashSet<>();
 
 	public Client(String name, Gender gender) {
 		this.name = name;
@@ -27,8 +25,8 @@ public class Client {
 		return gender;
 	}
 	
-	public List<Account> getAccounts() {
-		return Collections.unmodifiableList(accounts);
+	public Set<Account> getAccounts() {
+		return Collections.unmodifiableSet(accounts);
 	}
 	
 	public String getClientGreeting() {
