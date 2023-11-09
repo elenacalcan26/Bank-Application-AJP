@@ -23,7 +23,7 @@ public class BankApplication {
 	}
 	
 	private static void modifyBank() {
-		Client client1 = new Client("John", Gender.MALE);
+		Client client1 = new Client("John", Gender.MALE, "Rome");
 		Account account1 = new SavingAccount(1, 100);
 		Account account2 = new CheckingAccount(2, 100, 20);
 		client1.addAccount(account1);

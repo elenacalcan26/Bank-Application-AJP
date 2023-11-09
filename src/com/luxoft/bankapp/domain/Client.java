@@ -6,11 +6,13 @@ public class Client {
 	
 	private String name;
 	private Gender gender;
+	private String city;
 	private Set<Account> accounts = new LinkedHashSet<>();
 
-	public Client(String name, Gender gender) {
+	public Client(String name, Gender gender, String city) {
 		this.name = name;
 		this.gender = gender;
+		this.city = city;
 	}
 	
 	public void addAccount(final Account account) {
@@ -24,7 +26,11 @@ public class Client {
 	public Gender getGender() {
 		return gender;
 	}
-	
+
+	public String getCity() {
+		return city;
+	}
+
 	public Set<Account> getAccounts() {
 		return Collections.unmodifiableSet(accounts);
 	}
