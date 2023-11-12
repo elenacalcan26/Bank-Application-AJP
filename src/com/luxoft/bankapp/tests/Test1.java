@@ -41,7 +41,7 @@ public class Test1 {
 	
 	@Test
 	public void testClient() {
-		Client client = new Client("Smith John", Gender.MALE); 
+		Client client = new Client("Smith John", Gender.MALE, "Rome");
 		client.addAccount(new SavingAccount(1, 1000.0));
 		client.addAccount(new CheckingAccount(2, 1000.0, 100.0));
 		assertEquals(2, client.getAccounts().size());
@@ -52,11 +52,11 @@ public class Test1 {
 	@Test
 	public void testBank() throws ClientExistsException {
 		Bank bank = new Bank();
-		Client client1 = new Client("Smith John", Gender.MALE); 
+		Client client1 = new Client("Smith John", Gender.MALE, "Rome");
 		client1.addAccount(new SavingAccount(1, 1000.0));
 		client1.addAccount(new CheckingAccount(2, 1000.0, 100.0));
 		
-		Client client2 = new Client("Smith Michelle", Gender.FEMALE); 
+		Client client2 = new Client("Smith Michelle", Gender.FEMALE, "Madrid");
 		client2.addAccount(new SavingAccount(3, 2000.0));
 		client2.addAccount(new CheckingAccount(4, 1500.0, 200.0));
 		
