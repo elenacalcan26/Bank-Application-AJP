@@ -30,6 +30,8 @@ public class BankApplication {
 		if (args.length > 0 && args[0].equals(STATISTICS_FLAG)) {
 			printBankStatistics();
 		}
+
+		bank.closeEmailService();
 	}
 	
 	private static void modifyBank() {
