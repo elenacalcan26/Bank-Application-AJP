@@ -10,6 +10,7 @@ import com.luxoft.bankapp.exceptions.ClientExistsException;
 import com.luxoft.bankapp.exceptions.NotEnoughFundsException;
 import com.luxoft.bankapp.exceptions.OverdraftLimitExceededException;
 import com.luxoft.bankapp.service.BankReport;
+import com.luxoft.bankapp.service.BankReportStreams;
 import com.luxoft.bankapp.service.BankService;
 
 import java.util.Collection;
@@ -102,11 +103,28 @@ public class BankApplication {
 		System.out.println("Printing client to accounts mappings!");
 		Map<Client, Collection<Account>> clientAccountsMap = bankReport.getCustomerAccountsBank(bank);
 		clientAccountsMap.keySet().forEach(client -> System.out.format("Client %s has accounts: %s%n", client, clientAccountsMap.get(client)));
-		System.out.println("Done!");
 
 		System.out.println("Printing bank clients grouped by city");
 		Map<String, List<Client>> clientsGroupedByCity = bankReport.getClientsByCity(bank);
 		clientsGroupedByCity.keySet().forEach(city -> System.out.format("From %s city are the next clients: %s%n", city, clientsGroupedByCity.get(city)));
+		System.out.println("Done!");
+
+		BankReportStreams bankReportStreams = new BankReportStreams();
+
+		System.out.format("Total number of clients: %d%n", bankReportStreams.getNumberOfClients(bank));
+		System.out.format("Total number of accounts: %d%n", bankReportStreams.getNumberOfAccounts(bank));
+		System.out.format("Clients sorted in alphabetically order: %s%n", bankReportStreams.getClientSorted(bank));
+		System.out.format("Total balance from accounts of all bank clients: %s%n", bankReportStreams.getTotalSumInAccounts(bank));
+		System.out.format("Ordered accounts by current balance: %s%n", bankReportStreams.getSortedAccountsBySum(bank));
+		System.out.format("Total amount of credits granted to the bank clients: %f%n", bankReportStreams.getBankCreditSum(bank));
+
+		System.out.println("Printing client to accounts mappings!");
+		Map<Client, Collection<Account>> clientAccountsMap2 = bankReportStreams.getCustomerAccounts(bank);
+		clientAccountsMap2.keySet().forEach(client -> System.out.format("Client %s has accounts: %s%n", client, clientAccountsMap2.get(client)));
+
+		System.out.println("Printing bank clients grouped by city");
+		Map<String, List<Client>> clientsGroupedByCity2 = bankReportStreams.getClientsByCity(bank);
+		clientsGroupedByCity2.keySet().forEach(city -> System.out.format("From %s city are the next clients: %s%n", city, clientsGroupedByCity2.get(city)));
 		System.out.println("Done!");
 	}
 }
